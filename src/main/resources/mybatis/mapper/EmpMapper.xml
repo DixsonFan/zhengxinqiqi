@@ -1,0 +1,31 @@
+<?xml  version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hbue.qipai.zhengxin.mapper.EmpMapper">
+    <resultMap id="empMap" type="Emp">
+        <id property="id" column="id"></id>
+        <result property="birthday" column="birthday" javaType="java.sql.Date"></result>
+    </resultMap>
+
+    <select id="queryEmpAll" resultMap="empMap">
+        select * from emp
+    </select>
+
+    <delete id="deleteEmp" parameterType="int">
+        delete  from emp where id = #{id}
+    </delete>
+    
+    <select id="getEmpById" parameterType="int" resultMap="empMap">
+        select * from emp where id = #{id};
+    </select>
+
+    <update id="updateEmp" parameterType="Emp">
+        update emp set name=#{name},address=#{address},birthday=#{birthday} where id=#{id}
+    </update>
+
+    <insert id="addEmp" parameterType="Emp">
+        insert into emp(name, address, birthday) values(#{name}, #{address}, #{birthday})
+    </insert>
+
+</mapper>
